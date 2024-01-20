@@ -10,13 +10,14 @@ export const Profiles: FC<{
   id: number;
   setChosenProfile: React.Dispatch<React.SetStateAction<number>>;
   setChosenAccount: React.Dispatch<React.SetStateAction<number>>;
-}> = ({ id, setChosenProfile, setChosenAccount }) => {
+  perPage: number;
+  setPerPage: React.Dispatch<React.SetStateAction<number>>;
+}> = ({ id, setChosenProfile, setChosenAccount, perPage, setPerPage }) => {
   const [profiles, setProfiles] = useState<TypeProfiles>([]);
   const [sortBy, setSortBy] = useState({ sortBy: "", reverse: false });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentProfiles, setCurrentProfiles] = useState<TypeProfiles>([]);
-  const [perPage, setPerPage] = useState(5);
 
   const [filter, setFilter] = useState<string>("");
 
@@ -81,6 +82,7 @@ export const Profiles: FC<{
           setCurrentPage={setCurrentPage}
         />
         <select
+          value={perPage}
           onChange={(e) => {
             setCurrentPage(1);
             setPerPage(Number(e.target.value));

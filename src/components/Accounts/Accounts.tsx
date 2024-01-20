@@ -8,13 +8,14 @@ import { filterAccounts } from "../../helpers/filter/filterAccounts";
 
 export const Accounts: FC<{
   setChosenAccount: React.Dispatch<React.SetStateAction<number>>;
-}> = ({ setChosenAccount }) => {
+  perPage: number;
+  setPerPage: React.Dispatch<React.SetStateAction<number>>;
+}> = ({ setChosenAccount, perPage, setPerPage }) => {
   const [accounts, setAccounts] = useState<TypeAccounts>(data.accounts);
   const [sortBy, setSortBy] = useState({ sortBy: "", reverse: false });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentAccs, setCurrentAccs] = useState<TypeAccounts>([]);
-  const [perPage, setPerPage] = useState(5);
 
   const [filter, setFilter] = useState<string>("");
 
@@ -72,6 +73,7 @@ export const Accounts: FC<{
           setCurrentPage={setCurrentPage}
         />
         <select
+          value={perPage}
           onChange={(e) => {
             setCurrentPage(1);
             setPerPage(Number(e.target.value));
