@@ -5,6 +5,8 @@ import { Pagination } from "../Pagination/Pagination";
 import { filterCampaigns } from "../../helpers/filter/filterCampaigns";
 import { sortCampaigns } from "../../helpers/sort/sortCampaigns";
 import { TypeCampaigns } from "../../types/campaignsTypes";
+import UP from "../../images/up-chevron.png";
+import DOWN from "../../images/down-chevron.png";
 
 export const Campaigns: FC<{
   accId: number;
@@ -54,11 +56,76 @@ export const Campaigns: FC<{
                 sortCampaigns.byId(campaigns, setCampaigns, sortBy, setSortBy);
               }}
             >
-              ID
+              <div className="th-content-global">
+                <p>ID</p>
+                {sortBy.sortBy === "id" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "id" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
             </th>
-            <th>Clicks</th>
-            <th>Cost</th>
-            <th>Date</th>
+            <th
+              onClick={() => {
+                sortCampaigns.byClicks(
+                  campaigns,
+                  setCampaigns,
+                  sortBy,
+                  setSortBy
+                );
+              }}
+            >
+              <div className="th-content-global">
+                <p>Clicks</p>
+                {sortBy.sortBy === "clicks" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "clicks" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
+            <th
+              onClick={() => {
+                sortCampaigns.byCost(
+                  campaigns,
+                  setCampaigns,
+                  sortBy,
+                  setSortBy
+                );
+              }}
+            >
+              <div className="th-content-global">
+                <p>Cost</p>
+                {sortBy.sortBy === "cost" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "cost" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
+            <th
+              onClick={() => {
+                sortCampaigns.byDate(
+                  campaigns,
+                  setCampaigns,
+                  sortBy,
+                  setSortBy
+                );
+              }}
+            >
+              <div className="th-content-global">
+                <p>Date</p>
+                {sortBy.sortBy === "date" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "date" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody>

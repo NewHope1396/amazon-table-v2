@@ -5,6 +5,8 @@ import { TypeAccounts } from "../../types/accountsTypes";
 import { sortAccounts } from "../../helpers/sort/sortAccounts";
 import { Pagination } from "../Pagination/Pagination";
 import { filterAccounts } from "../../helpers/filter/filterAccounts";
+import UP from "../../images/up-chevron.png";
+import DOWN from "../../images/down-chevron.png";
 
 export const Accounts: FC<{
   setChosenAccount: React.Dispatch<React.SetStateAction<number>>;
@@ -34,17 +36,53 @@ export const Accounts: FC<{
           <tr>
             <th colSpan={4}>Accounts</th>
           </tr>
-          <tr>
+          <tr className="tr-global">
             <th
               onClick={() => {
                 sortAccounts.byId(accounts, setAccounts, sortBy, setSortBy);
               }}
             >
-              ID
+              <div className="th-content-global">
+                <p>ID</p>
+                {sortBy.sortBy === "id" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "id" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
             </th>
-            <th>Email</th>
+            <th
+              onClick={() => {
+                sortAccounts.byEmail(accounts, setAccounts, sortBy, setSortBy);
+              }}
+            >
+              <div className="th-content-global">
+                <p>Email</p>
+                {sortBy.sortBy === "email" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "email" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
             <th>Token</th>
-            <th>Creation Date</th>
+            <th
+              onClick={() => {
+                sortAccounts.byDate(accounts, setAccounts, sortBy, setSortBy);
+              }}
+            >
+              <div className="th-content-global">
+                <p>Creation Date</p>
+                {sortBy.sortBy === "date" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "date" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody>

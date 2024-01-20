@@ -5,6 +5,8 @@ import { Pagination } from "../Pagination/Pagination";
 import { filterProfiles } from "../../helpers/filter/filterProfiles";
 import { TypeProfiles } from "../../types/profilesTypes";
 import { sortProfiles } from "../../helpers/sort/sortProfiles";
+import UP from "../../images/up-chevron.png";
+import DOWN from "../../images/down-chevron.png";
 
 export const Profiles: FC<{
   id: number;
@@ -45,14 +47,64 @@ export const Profiles: FC<{
           </tr>
           <tr>
             <th
+              className="th-global"
               onClick={() => {
                 sortProfiles.byId(profiles, setProfiles, sortBy, setSortBy);
               }}
             >
-              ID
+              <div className="th-content-global">
+                <p>ID</p>
+                {sortBy.sortBy === "id" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "id" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
             </th>
-            <th>Country</th>
-            <th>Marketplace</th>
+            <th
+              className="th-global"
+              onClick={() => {
+                sortProfiles.byCountry(
+                  profiles,
+                  setProfiles,
+                  sortBy,
+                  setSortBy
+                );
+              }}
+            >
+              <div className="th-content-global">
+                <p>Country</p>
+                {sortBy.sortBy === "country" && sortBy.reverse === false && (
+                  <img src={UP} className="arrow" />
+                )}
+                {sortBy.sortBy === "country" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
+            <th
+              className="th-global"
+              onClick={() => {
+                sortProfiles.byMarketplace(
+                  profiles,
+                  setProfiles,
+                  sortBy,
+                  setSortBy
+                );
+              }}
+            >
+              <div className="th-content-global">
+                <p>Marketplace</p>
+                {sortBy.sortBy === "marketplace" &&
+                  sortBy.reverse === false && (
+                    <img src={UP} className="arrow" />
+                  )}
+                {sortBy.sortBy === "marketplace" && sortBy.reverse === true && (
+                  <img src={DOWN} className="arrow" />
+                )}
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -3,3 +3,18 @@
 body {
   background-color: #919090;
 }
+
+.arrow {
+  width: 18px;
+  height: 18px;
+}
+
+.th-content-global {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & p {
+    margin: 0;
+  }
+}
