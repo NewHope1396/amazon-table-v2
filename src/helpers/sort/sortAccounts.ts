@@ -1,5 +1,5 @@
-import { TypeAccounts } from "../types/accountsTypes"
-import { TypeSortBy } from "../types/sortByType";
+import { TypeAccounts } from "../../types/accountsTypes"
+import { TypeSortBy } from "../../types/sortByType";
 
 const byId = (
   accs: TypeAccounts,

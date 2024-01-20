@@ -1,4 +1,4 @@
-import { TypeAccounts } from "../types/accountsTypes";
+import { TypeAccounts } from "../../types/accountsTypes";
 
 export const filterAccounts = (value: string, accs: TypeAccounts) => {
   const filteredAccs = accs.filter((acc => {

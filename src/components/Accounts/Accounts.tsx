@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import data from "../../data.json";
 import { TypeAccounts } from "../../types/accountsTypes";
-import { sortAccounts } from "../../helpers/sortAccounts";
+import { sortAccounts } from "../../helpers/sort/sortAccounts";
 import { Pagination } from "../Pagination/Pagination";
-import { filterAccounts } from "../../helpers/filterAccounts";
+import { filterAccounts } from "../../helpers/filter/filterAccounts";
 
-export const Accounts = () => {
+export const Accounts: FC<{
+  setChosenAccount: React.Dispatch<React.SetStateAction<number>>;
+}> = ({ setChosenAccount }) => {
   const [accounts, setAccounts] = useState<TypeAccounts>(data.accounts);
-  const [sortBy, setSortBy] = useState({ sortBy: "none", reverse: false });
+  const [sortBy, setSortBy] = useState({ sortBy: "", reverse: false });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentAccs, setCurrentAccs] = useState<TypeAccounts>([]);
@@ -45,9 +47,14 @@ export const Accounts = () => {
           </tr>
         </thead>
         <tbody>
-          {filterAccounts(filter, currentAccs).map((acc) => {
+          {filterAccounts(filter.toLowerCase(), currentAccs).map((acc) => {
             return (
-              <tr key={acc.accountId}>
+              <tr
+                onClick={() => {
+                  setChosenAccount(acc.accountId);
+                }}
+                key={acc.accountId}
+              >
                 <td>{acc.accountId}</td>
                 <td>{acc.email}</td>
                 <td>{acc.authToken}</td>
