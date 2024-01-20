@@ -4,6 +4,7 @@ import data from "../../data.json";
 import { TypeAccounts } from "../../types/accountsTypes";
 import { sortAccounts } from "../../helpers/sortAccounts";
 import { Pagination } from "../Pagination/Pagination";
+import { filterAccounts } from "../../helpers/filterAccounts";
 
 export const Accounts = () => {
   const [accounts, setAccounts] = useState<TypeAccounts>(data.accounts);
@@ -12,6 +13,8 @@ export const Accounts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentAccs, setCurrentAccs] = useState<TypeAccounts>([]);
   const [perPage, setPerPage] = useState(5);
+
+  const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
     const lastIndex = currentPage * perPage;
@@ -42,7 +45,7 @@ export const Accounts = () => {
           </tr>
         </thead>
         <tbody>
-          {currentAccs.map((acc) => {
+          {filterAccounts(filter, currentAccs).map((acc) => {
             return (
               <tr key={acc.accountId}>
                 <td>{acc.accountId}</td>
@@ -75,6 +78,12 @@ export const Accounts = () => {
           <option value="10">10</option>
           <option value="20">20</option>
         </select>
+        <input
+          onChange={(e) => {
+            setFilter(e.target.value);
+          }}
+          type="text"
+        />
       </div>
     </div>
   );
