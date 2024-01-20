@@ -18,3 +18,85 @@ body {
     margin: 0;
   }
 }
+
+.th-main-global {
+  text-align: center;
+  font-size: 24px;
+}
+
+.filter-block-global {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+
+  & label {
+    margin-right: 8px;
+
+    & img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  & input {
+    padding: 4px;
+    border-radius: 5px;
+  }
+}
+
+.pagination-block-global {
+  & ul {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.select-block-global {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: max-content;
+  border-radius: 15px;
+  border: 2px solid black;
+
+  & p {
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0;
+    margin-right: 8px;
+    border-right: 2px solid black;
+    padding: 8px 16px;
+  }
+
+  & select {
+    display: block;
+    height: 100%;
+    border: none;
+
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
+
+    border-radius: 15px;
+  }
+}
+
+.upper-table-block-global {
+  display: flex;
+  justify-content: space-between;
+
+  & button {
+    height: 36px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: background-color 0.4s ease-in-out;
+
+    &:hover {
+      background-color: #0d6efd;
+    }
+  }
+}

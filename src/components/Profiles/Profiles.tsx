@@ -7,6 +7,7 @@ import { TypeProfiles } from "../../types/profilesTypes";
 import { sortProfiles } from "../../helpers/sort/sortProfiles";
 import UP from "../../images/up-chevron.png";
 import DOWN from "../../images/down-chevron.png";
+import FIND from "../../images/search.png";
 
 export const Profiles: FC<{
   id: number;
@@ -40,10 +41,34 @@ export const Profiles: FC<{
 
   return (
     <div>
+      <div className="upper-table-block-global">
+        <div className="filter-block-global">
+          <label htmlFor="filter">
+            <img src={FIND} />
+          </label>
+          <input
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+            type="text"
+            id="filter"
+            placeholder="Search"
+          />
+        </div>
+        <button
+          onClick={() => {
+            setChosenAccount(0);
+          }}
+        >
+          Go Back
+        </button>
+      </div>
       <Table variant="dark" bordered striped hover>
         <thead>
           <tr>
-            <th colSpan={3}>Profiles for account with id {id} </th>
+            <th className="th-main-global" colSpan={3}>
+              Profiles for account with id {id}
+            </th>
           </tr>
           <tr>
             <th
@@ -126,42 +151,31 @@ export const Profiles: FC<{
           )}
         </tbody>
       </Table>
-      <div>
+      <div className="pagination-block-global">
         <Pagination
           perPage={perPage}
           totalPage={profiles.length}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-        <select
-          value={perPage}
-          onChange={(e) => {
-            setCurrentPage(1);
-            setPerPage(Number(e.target.value));
-            <p>Кількіть показаних варіантів</p>;
-          }}
-          name="pagination"
-          id="pagination"
-        >
-          <option value="5">5</option>
-          <option value="7">7</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
-        <input
-          onChange={(e) => {
-            setFilter(e.target.value);
-          }}
-          type="text"
-        />
+        <div className="select-block-global">
+          <p>Items per page</p>
+          <select
+            value={perPage}
+            onChange={(e) => {
+              setCurrentPage(1);
+              setPerPage(Number(e.target.value));
+            }}
+            name="pagination"
+            id="pagination"
+          >
+            <option value="5">5</option>
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
       </div>
-      <button
-        onClick={() => {
-          setChosenAccount(0);
-        }}
-      >
-        Go Back
-      </button>
     </div>
   );
 };
