@@ -25,13 +25,15 @@ export const Profiles: FC<{
       return acc.accountId === id;
     });
     setProfiles(chosenAcc!.profiles);
+  }, [id]);
 
+  useEffect(() => {
     const lastIndex = currentPage * perPage;
     const firstIndex = lastIndex - perPage;
     const newCurrentProfiles = profiles.slice(firstIndex, lastIndex);
 
     setCurrentProfiles(newCurrentProfiles);
-  }, [profiles, currentPage, perPage, id]);
+  }, [profiles, currentPage, perPage]);
 
   return (
     <div>
